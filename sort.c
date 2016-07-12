@@ -1,5 +1,5 @@
 /*Sean Kee*/
-/*Dynamic Allocation Sorting System v1.0.0*/
+/*Dynamic Allocation Sorting System v1.0.1*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -11,10 +11,10 @@ void sortAsc(int *output, int size) {
 	int *ptr = output;
 	for (i = 0; i < size - 1; i++) { 
 		for (j = 0; j < size - 1; j++) {
-			if (*(ptr + j) > *(ptr + j + 1)) { /*if the current number being checked is greater than the next one, swap places)*/
-				temp = *(ptr + j);
-				*(ptr + j) = *(ptr + j + 1);
-				*(ptr + j + 1) = temp;
+			if (ptr[j] > ptr[j + 1]) { /*if the current number being checked is greater than the next one, swap places)*/
+				temp = ptr[j];
+				ptr[j] = ptr[j + 1];
+				ptr[j + 1] = temp;
 			}
 		}
 	}
@@ -27,10 +27,10 @@ int *sortDes(int *output, int size) {
 	int *ptr = output;
 	for (i = 0; i < size - 1; i++) {
 		for (j = 0; j < size - 1; j++) {
-			if (*(ptr + j) < *(ptr + j + 1)) { /*Same thing as ascending, just backwards*/
-			temp = *(ptr + j);
-			*(ptr + j) = *(ptr + j + 1);
-			*(ptr + j + 1) = temp;
+			if (ptr[j] < ptr[j + 1]) { /*Same thing as ascending, just backwards*/
+			temp = ptr[j];
+			ptr[j] = ptr[j + 1];
+			ptr[j + 1] = temp;
 			}
 		}
 	}
@@ -55,9 +55,9 @@ int main() {
 	srand(time(NULL));
 	
 	for(i = 0; i < size; i++) { /*Fills the original with random numbers between 1 and 100 */
-		*(original + i) = (rand() % 100);
-		*(ascending + i) = *(original + i);
-		*(descending + i) = *(original + i);
+		original[i] = (rand() % 100);
+		ascending[i] = original[i];
+		descending[i] = original[i];
 	}
 	
 	sortAsc(ascending, size);
@@ -65,18 +65,18 @@ int main() {
 
 	printf("Original Numbers\n");
 	for (i = 0; i < size; i++) {
-		printf("%d\n", *(original + i));
+		printf("%d\n", original[i]);
 	}
 	printf("****\n");
 	printf("Numbers in Ascending order\n");
 	for (i = 0; i < size; i++) {
-		printf("%d\n", *(ascending + i));
+		printf("%d\n", ascending[i]);
 	}
 
 	printf("****\n");
 	printf("Numbers in Descending order\n");
 	for (i = 0; i < size; i++) {
-		printf("%d\n", *(descending + i));
+		printf("%d\n", descending[i]);
 	}
 
 	free(original); /*Frees dynamic memory*/
