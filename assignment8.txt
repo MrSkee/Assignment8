@@ -1,3 +1,25 @@
 Sean Kee
 
+1. CAN CRASH, the array is a char and contains ints. This wouldnt allow the program to compile in the first place. If it did compile, it would print out the alphabet.
+
+2. Valgrind will report that there are 52 bytes that ae "definitely lost". Since this program is intended to print out the alphabet, the malloc will allocate that much space for the alphabet string. Since there are 52 letters, capital and lowercase, it will allocate 52 bytes, one for each character. Since the memory is not freed before point "p" is pointed to NULL, that memory is lost, causing a memory leak.
+
+3. 
+LINE #	ERROR
+14	Trying to set an array with type char to integers.
+
+18	Did not provide a suitable condition for the for loop, which means it will go on forever, which would eventually eat up all the system memory and cause a crash
+
+29
+
+
+4.
+14 char c[2] = { '0', '0' };
+
+18 for (p = a; *p <= a; p++) {
+}
+
+29, add do on line 17, to compliment the while function.
+
+
 
